@@ -3,12 +3,18 @@ import { createSlice } from '@reduxjs/toolkit';
 
 export interface CharactersState {
   characters: ICharacter[];
-  charactersPage: number;
+  pagination: {
+    page: number;
+    totalPages: number;
+  };
 }
 
 const initialState: CharactersState = {
   characters: [],
-  charactersPage: 1,
+  pagination: {
+    page: 1,
+    totalPages: 1,
+  },
 };
 
 const charactersSlice = createSlice({
@@ -18,12 +24,12 @@ const charactersSlice = createSlice({
     setCharacters: (state, action) => {
       state.characters = action.payload;
     },
-    setCharactersPage: (state, action) => {
-      state.charactersPage = action.payload;
+    setPagination: (state, action) => {
+      state.pagination = { ...state.pagination, ...action.payload };
     },
   },
 });
 
-export const { setCharacters, setCharactersPage } = charactersSlice.actions;
+export const { setCharacters, setPagination } = charactersSlice.actions;
 
 export default charactersSlice.reducer;
