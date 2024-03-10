@@ -1,11 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export interface AppState {
-  loading: boolean;
+  loading: {
+    [key: string]: boolean;
+  };
 }
 
 const initialState: AppState = {
-  loading: false,
+  loading: {
+    default: false,
+  },
 };
 
 const appSlice = createSlice({
@@ -13,11 +17,14 @@ const appSlice = createSlice({
   initialState,
   reducers: {
     setLoading: (state, action) => {
-      state.loading = action.payload;
+      state.loading.default = action.payload;
+    },
+    setLoadingByKey: (state, action) => {
+      state.loading[action.payload.key] = action.payload.value;
     },
   },
 });
 
-export const { setLoading } = appSlice.actions;
+export const { setLoading, setLoadingByKey } = appSlice.actions;
 
 export default appSlice.reducer;
