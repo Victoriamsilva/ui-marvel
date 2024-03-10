@@ -5,17 +5,17 @@ import { ICharacter } from '../../../interfaces/character.interface';
 import { Container } from '@radix-ui/themes';
 import ReactPaginate from 'react-paginate';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCharactersPage } from '../../../services/state/characters/characters-slice';
+import { setCharacters, setCharactersPage } from '../../../services/state/characters/characters-slice';
 import { setLoading } from '../../../services/state/application/application-slice';
 import Loading from '../../../components/loading/loading';
 import { RootState } from '../../../services/state/store';
 import { toast } from 'react-toastify';
 
 function Characters() {
-  const [characters, setCharacters] = useState<ICharacter[]>([]);
   const [totalPages, setTotalPages] = useState(1);
   const charactersPage = useSelector((state: RootState) => state.characters.charactersPage);
   const loading = useSelector((state: RootState) => state.application.loading);
+  const characters = useSelector((state: RootState) => state.characters.characters);
 
   const dispatch = useDispatch();
 
@@ -23,7 +23,7 @@ function Characters() {
     try {
       dispatch(setLoading(true));
       const { data } = await findPaginatedCharacters(charactersPage);
-      setCharacters(data.results);
+      dispatch(setCharacters(data.results as ICharacter[]));
       setTotalPages(Math.ceil(data.total / data.limit));
     } catch (error: any) {
       toast.error(error.message);

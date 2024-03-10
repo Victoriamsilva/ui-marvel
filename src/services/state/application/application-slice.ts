@@ -9,7 +9,7 @@ const initialState: AppState = {
 };
 
 const appSlice = createSlice({
-  name: 'app',
+  name: 'application',
   initialState,
   reducers: {
     setLoading: (state, action) => {
