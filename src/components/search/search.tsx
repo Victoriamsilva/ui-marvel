@@ -11,11 +11,12 @@ function Search({ change, initialValue }: { change: (event: string) => void; ini
     change(search);
   }, [search]);
   return (
-    <TextField.Root variant="classic" size="3" className="w-full !text-white ">
+    <TextField.Root data-testid="test-search" variant="classic" size="3" className="w-full !text-white ">
       <TextField.Slot className="">
         <Icon name="Search" />
       </TextField.Slot>
       <TextField.Input
+        data-testid="test-search-input"
         value={value}
         onChange={(event: any) => setValue(event.target.value)}
         className=" rounded"

@@ -15,7 +15,7 @@ describe('Characters', () => {
     },
   });
 
-  test('renders loading indicator when loading is true', () => {
+  test('Should render loading indicator when loading is true', () => {
     mockStore.dispatch({
       type: 'application/setLoading',
       payload: true,
@@ -30,7 +30,7 @@ describe('Characters', () => {
     expect(getByTestId('test-loading')).toBeInTheDocument();
   });
 
-  test('renders character cards and pagination controls when loading is false', async () => {
+  test('Should render character cards and pagination controls when loading is false', async () => {
     const { getAllByTestId, getByRole } = render(
       <Provider store={mockStore}>
         <Characters />
