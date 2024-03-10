@@ -1,5 +1,5 @@
 import Loading from '@/components/loading/loading';
-import { findCharacterById, findCharacterComics } from '@/services/api/characters.service';
+import { findCharacterById, findCharacterComics, findCharacterSeries } from '@/services/api/characters.service';
 import { setLoading, setLoadingByKey } from '@/services/state/application/application-slice';
 import { RootState } from '@/services/state/store';
 import { useEffect } from 'react';
@@ -9,6 +9,7 @@ import ListCards from '@/components/list-cards/list-cards';
 import './characters-details.scss';
 import notifyError from '@/utils/notifyError';
 import { setCharacter, setComics, setSeries } from '@/services/state/characters/characters-slice';
+import { Box, Tabs } from '@radix-ui/themes';
 
 function CharactersDetails() {
   const { characterId } = useParams();
@@ -46,7 +47,7 @@ function CharactersDetails() {
     try {
       dispatch(setLoadingByKey({ key: 'series', value: true }));
       if (!characterId) throw new Error('Personagem não encontrado');
-      const { data } = await findCharacterComics(characterId);
+      const { data } = await findCharacterSeries(characterId);
       dispatch(setSeries(data.results));
     } catch (error: any) {
       notifyError(error);
@@ -63,10 +64,10 @@ function CharactersDetails() {
     <>
       {!loading.default && character ? (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 !text-yellow-500 ">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <h1 className="mb-8 font-black text-5xl !text-yellow-500">{character.name}</h1>
-              <p>{character.description}</p>
+              <p className="text-white">{character.description}</p>
             </div>
             <div className="w-full   shadow-lg shadow-yellow-500">
               <img
@@ -81,13 +82,19 @@ function CharactersDetails() {
         <Loading />
       )}
 
-      <h2 className="!text-yellow-400 text-2xl text-start w-full my-8">Revistas</h2>
+      <Tabs.Root className="w-full" defaultValue="comics">
+        <Tabs.List className="my-8">
+          <Tabs.Trigger value="comics">Revistas</Tabs.Trigger>
+          <Tabs.Trigger value="series">Filmes e series</Tabs.Trigger>
+        </Tabs.List>
 
-      <ListCards loading={loading.comics} clickable={false} items={comics} />
-
-      <h2 className="!text-yellow-400 text-2xl text-start w-full my-8">Series</h2>
-
-      <ListCards loading={loading.series} clickable={false} items={series} />
+        <Tabs.Content value="comics">
+          <ListCards loading={loading.comics} clickable={false} items={comics} />
+        </Tabs.Content>
+        <Tabs.Content value="series">
+          <ListCards loading={loading.series} clickable={false} items={series} />
+        </Tabs.Content>
+      </Tabs.Root>
     </>
   );
 }

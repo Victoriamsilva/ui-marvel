@@ -43,8 +43,8 @@ function Characters() {
       <ListCards feedBackMessage="textAndImage" loading={loading} items={characters} path="characters" padding="py-8" />
       {!loading && pagination.totalPages > 1 ? (
         <ReactPaginate
-          className="flex text-yellow-400"
-          activeClassName="rounded-full text-yellow-400"
+          className="flex text-yellow-500"
+          activeClassName="rounded-full text-yellow-500"
           pageLinkClassName="border border-yellow-500 px-2 mx-2 h-8 w-8 flex items-center justify-center"
           breakLabel="..."
           nextLabel=">"

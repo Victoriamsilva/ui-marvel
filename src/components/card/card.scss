@@ -1,5 +1,5 @@
 .rt-Card {
-  @apply text-yellow-400;
+  @apply text-white;
 
   &:hover {
     @apply shadow-yellow-500 shadow-md;
@@ -30,7 +30,7 @@
   }
 
   h2 {
-    @apply text-xl font-bold rounded p-1;
+    @apply text-xl text-yellow-500 font-bold rounded p-1;
     display: -webkit-box;
     max-width: 200px;
     -webkit-line-clamp: 2;
