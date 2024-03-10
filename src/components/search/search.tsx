@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 function Search({ change, initialValue }: { change: (event: string) => void; initialValue: string }) {
   const [value, setValue] = useState(initialValue as string);
-  const search = useDebounce(value, 1000);
+  const search = useDebounce(value, 500);
 
   useEffect(() => {
     change(search);
