@@ -1,31 +1,29 @@
 import Loading from '@/components/loading/loading';
-import { ICharacter } from '@/interfaces/character.interface';
 import { findCharacterById, findCharacterComics } from '@/services/api/characters.service';
 import { setLoading, setLoadingByKey } from '@/services/state/application/application-slice';
 import { RootState } from '@/services/state/store';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import ListCards from '@/components/list-cards/list-cards';
 import './characters-details.scss';
+import notifyError from '@/utils/notifyError';
+import { setCharacter, setComics, setSeries } from '@/services/state/characters/characters-slice';
 
 function CharactersDetails() {
   const { characterId } = useParams();
-  const [character, setCharacter] = useState<ICharacter>();
-  const [comics, setComics] = useState([]);
-  const [series, setSeries] = useState([]);
-  const loading: any = useSelector((state: RootState) => state.application.loading);
+  const loading: { [key: string]: boolean } = useSelector((state: RootState) => state.application.loading);
+  const { character, series, comics } = useSelector((state: RootState) => state.characters);
   const dispatch = useDispatch();
 
   async function fetchCharacter() {
     try {
       dispatch(setLoading(true));
-      if (!characterId) throw new Error('Character not found');
+      if (!characterId) throw new Error('Personagem não encontrado');
       const { data } = await findCharacterById(characterId);
-      setCharacter(data.results[0]);
+      dispatch(setCharacter(data.results[0]));
     } catch (error: any) {
-      toast.error(error.message);
+      notifyError(error);
     } finally {
       dispatch(setLoading(false));
     }
@@ -34,12 +32,11 @@ function CharactersDetails() {
   async function fetchCharacterComics() {
     try {
       dispatch(setLoadingByKey({ key: 'comics', value: true }));
-      if (!characterId) throw new Error('Character not found');
+      if (!characterId) throw new Error('Personagem não encontrado');
       const { data } = await findCharacterComics(characterId);
-      setComics(data.results);
-      console.log(data);
+      dispatch(setComics(data.results));
     } catch (error: any) {
-      toast.error(error.message);
+      notifyError(error);
     } finally {
       dispatch(setLoadingByKey({ key: 'comics', value: false }));
     }
@@ -48,11 +45,11 @@ function CharactersDetails() {
   async function fetchCharacterSeries() {
     try {
       dispatch(setLoadingByKey({ key: 'series', value: true }));
-      if (!characterId) throw new Error('Character not found');
+      if (!characterId) throw new Error('Personagem não encontrado');
       const { data } = await findCharacterComics(characterId);
-      setSeries(data.results);
+      dispatch(setSeries(data.results));
     } catch (error: any) {
-      toast.error(error.message);
+      notifyError(error);
     } finally {
       dispatch(setLoadingByKey({ key: 'series', value: false }));
     }

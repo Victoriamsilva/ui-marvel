@@ -6,9 +6,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setCharacters, setPagination } from '../../../services/state/characters/characters-slice';
 import { setLoading } from '../../../services/state/application/application-slice';
 import { RootState } from '../../../services/state/store';
-import { toast } from 'react-toastify';
 import Search from '@/components/search/search';
 import ListCards from '@/components/list-cards/list-cards';
+import notifyError from '@/utils/notifyError';
 
 function Characters() {
   const pagination = useSelector((state: RootState) => state.characters.pagination);
@@ -23,7 +23,7 @@ function Characters() {
       dispatch(setCharacters(data.results as ICharacter[]));
       dispatch(setPagination({ totalPages: Math.ceil(data.total / data.limit) }));
     } catch (error: any) {
-      toast.error(error.message);
+      notifyError(error);
     } finally {
       dispatch(setLoading(false));
     }

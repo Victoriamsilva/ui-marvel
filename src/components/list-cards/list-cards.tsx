@@ -2,16 +2,17 @@ import { useNavigate } from 'react-router-dom';
 import Card from '../card/card';
 import Loading from '../loading/loading';
 import NoResultsImage from '../../assets/no-results.svg';
+import { IDefault } from '@/interfaces/default.interface';
 
 function ListCards({
-  items,
+  items = [],
   path,
   clickable = true,
   padding,
   loading,
   feedBackMessage = 'onlyText',
 }: {
-  items: any;
+  items?: IDefault[];
   path?: string;
   clickable?: boolean;
   padding?: string;
@@ -41,7 +42,7 @@ function ListCards({
       {!loading ? (
         <div className={'grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 ' + padding}>
           {items.length ? (
-            items.map((item: any) => (
+            items.map((item: IDefault) => (
               <Card
                 clickable={clickable}
                 onClick={() => (clickable ? navigate(`/${path}/${item.id}`) : {})}

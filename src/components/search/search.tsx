@@ -18,7 +18,7 @@ function Search({ change, initialValue }: { change: (event: string) => void; ini
       <TextField.Input
         data-testid="test-search-input"
         value={value}
-        onChange={(event: any) => setValue(event.target.value)}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => setValue(event.target.value)}
         className=" rounded"
         placeholder="Pesquise por um personagem"
       />
