@@ -14,3 +14,18 @@ export const findPaginatedCharacters = async ({ page = 20, search }: { page: num
   });
   return data;
 };
+
+export const findCharacterById = async (id: string) => {
+  const { data } = await api.get(`/characters/${id}`);
+  return data;
+};
+
+export const findCharacterComics = async (id: string) => {
+  const { data } = await api.get(`/characters/${id}/comics`);
+  return data;
+};
+
+export const findCharacterSeries = async (id: string) => {
+  const { data } = await api.get(`/characters/${id}/series`);
+  return data;
+};
