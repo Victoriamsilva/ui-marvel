@@ -1,7 +1,8 @@
 .rt-Card {
-  @apply cursor-pointer text-white;
+  @apply text-yellow-400;
 
   &:hover {
+    @apply shadow-yellow-500 shadow-md;
     .content {
       transform: translateY(0%);
 
