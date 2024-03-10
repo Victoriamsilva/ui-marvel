@@ -14,13 +14,13 @@
 
 .content {
   @apply absolute left-0 right-0 top-0 h-full w-full flex flex-col items-center p-4;
-  transition: all 1.5s;
+  transition: all 0.8s;
   transform: translateY(calc(100% - 6rem));
 
   &::before {
     @apply absolute inset-0 bg-black opacity-50 z-10;
     content: '';
-    transition: all 1.5s;
+    transition: all 0.8s;
   }
 
   h2,
@@ -39,7 +39,7 @@
 
   p {
     @apply pt-4 opacity-0 max-w-52;
-    transition: all 1.5s;
+    transition: all 0.8s;
     display: -webkit-box;
     -webkit-line-clamp: 6;
     -webkit-box-orient: vertical;

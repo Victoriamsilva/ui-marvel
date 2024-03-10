@@ -10,6 +10,7 @@ import { setLoading } from '../../../services/state/application/application-slic
 import Loading from '../../../components/loading/loading';
 import { RootState } from '../../../services/state/store';
 import { toast } from 'react-toastify';
+import Search from '@/components/search/search';
 
 function Characters() {
   const [totalPages, setTotalPages] = useState(1);
@@ -19,10 +20,10 @@ function Characters() {
 
   const dispatch = useDispatch();
 
-  async function fetchCharacters() {
+  async function fetchCharacters(search?: string) {
     try {
       dispatch(setLoading(true));
-      const { data } = await findPaginatedCharacters(charactersPage);
+      const { data } = await findPaginatedCharacters({ page: charactersPage, search });
       dispatch(setCharacters(data.results as ICharacter[]));
       setTotalPages(Math.ceil(data.total / data.limit));
     } catch (error: any) {
@@ -44,9 +45,10 @@ function Characters() {
   return (
     <>
       <Container p={'8'}>
+        <Search change={(e: string) => fetchCharacters(e)} initialValue="" />
         {!loading ? (
           <>
-            <div className="grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <div className="my-8 grid w-full grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
               {characters.map((character) => (
                 <Card
                   key={character.id}
@@ -57,7 +59,7 @@ function Characters() {
               ))}
             </div>
             <ReactPaginate
-              className="flex text-white mt-8"
+              className="flex text-white"
               activeClassName="bg-black rounded-full text-white"
               pageClassName="border border-white px-2 mx-2 h-8 w-8 flex items-center justify-center"
               breakLabel="..."
