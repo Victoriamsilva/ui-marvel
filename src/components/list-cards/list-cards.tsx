@@ -1,6 +1,7 @@
 import { useNavigate } from 'react-router-dom';
 import Card from '../card/card';
 import Loading from '../loading/loading';
+import NoResultsImage from '../../assets/no-results.svg';
 
 function ListCards({
   items,
@@ -8,14 +9,32 @@ function ListCards({
   clickable = true,
   padding,
   loading,
+  feedBackMessage = 'onlyText',
 }: {
   items: any;
   path?: string;
   clickable?: boolean;
   padding?: string;
   loading?: boolean;
+  feedBackMessage?: 'onlyText' | 'textAndImage';
 }) {
   const navigate = useNavigate();
+
+  const Feedback = () => {
+    switch (feedBackMessage) {
+      case 'onlyText':
+        return <p>Nenhum resultado encontrado</p>;
+      case 'textAndImage':
+        return (
+          <div className="flex flex-col items-center">
+            <p>Nenhum resultado encontrado</p>
+            <img src={NoResultsImage} alt="Nenhum resultado encontrado" />
+          </div>
+        );
+      default:
+        return <p>Nenhum resultado encontrado</p>;
+    }
+  };
 
   return (
     <>
@@ -33,7 +52,7 @@ function ListCards({
               />
             ))
           ) : (
-            <p>Nenhum item encontrado</p>
+            <Feedback />
           )}
         </div>
       ) : (

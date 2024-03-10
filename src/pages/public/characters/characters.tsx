@@ -40,7 +40,7 @@ function Characters() {
   return (
     <>
       <Search change={(e: string) => fetchCharacters(e)} initialValue="" />
-      <ListCards loading={loading} items={characters} path="characters" padding="py-8" />
+      <ListCards feedBackMessage="textAndImage" loading={loading} items={characters} path="characters" padding="py-8" />
       {!loading && pagination.totalPages > 1 ? (
         <ReactPaginate
           className="flex text-yellow-400"
