@@ -9,7 +9,7 @@ import ListCards from '@/components/list-cards/list-cards';
 import './characters-details.scss';
 import notifyError from '@/utils/notifyError';
 import { setCharacter, setComics, setSeries } from '@/services/state/characters/characters-slice';
-import { Box, Tabs } from '@radix-ui/themes';
+import { Tabs } from '@radix-ui/themes';
 
 function CharactersDetails() {
   const { characterId } = useParams();

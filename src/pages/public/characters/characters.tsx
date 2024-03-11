@@ -44,7 +44,7 @@ function Characters() {
       {!loading && pagination.totalPages > 1 ? (
         <ReactPaginate
           className="flex text-yellow-500"
-          activeClassName="rounded-full text-yellow-500"
+          activeLinkClassName="rounded-full"
           pageLinkClassName="border border-yellow-500 px-2 mx-2 h-8 w-8 flex items-center justify-center"
           breakLabel="..."
           nextLabel=">"
