@@ -43,10 +43,10 @@ export interface IStorySummary extends ISummary {
 
 export interface IDefault {
   id: number;
-  title: string;
+  title?: string;
   name?: string;
   description: string;
-  modified: Date;
-  resourceURI: string;
+  modified?: Date;
+  resourceURI?: string;
   thumbnail: IImage;
 }

@@ -6,12 +6,12 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import ListCards from '@/components/list-cards/list-cards';
-import './characters-details.scss';
+import './character-details.scss';
 import notifyError from '@/utils/notifyError';
 import { setCharacter, setComics, setSeries } from '@/services/state/characters/characters-slice';
 import { Tabs } from '@radix-ui/themes';
 
-function CharactersDetails() {
+function CharacterDetails() {
   const { characterId } = useParams();
   const loading: { [key: string]: boolean } = useSelector((state: RootState) => state.application.loading);
   const { character, series, comics } = useSelector((state: RootState) => state.characters);
@@ -64,13 +64,14 @@ function CharactersDetails() {
     <>
       {!loading.default && character ? (
         <>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div data-testid="test-character-details" className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <h1 className="mb-8 font-black text-5xl !text-yellow-500">{character.name}</h1>
               <p className="text-white">{character.description}</p>
             </div>
             <div className="w-full   shadow-lg shadow-yellow-500">
               <img
+                data-testid="test-character-image"
                 className="w-full object-cover h-full rounded shadow-md shadow-yellow-500"
                 src={`${character.thumbnail.path}.${character.thumbnail.extension}`}
                 alt=""
@@ -84,8 +85,12 @@ function CharactersDetails() {
 
       <Tabs.Root className="w-full" defaultValue="comics">
         <Tabs.List className="my-8">
-          <Tabs.Trigger value="comics">Revistas</Tabs.Trigger>
-          <Tabs.Trigger value="series">Filmes e series</Tabs.Trigger>
+          <Tabs.Trigger data-testid="test-comics-tab" value="comics">
+            Revistas
+          </Tabs.Trigger>
+          <Tabs.Trigger data-testid="test-series-tab" value="series">
+            Filmes e series
+          </Tabs.Trigger>
         </Tabs.List>
 
         <Tabs.Content value="comics">
@@ -99,4 +104,4 @@ function CharactersDetails() {
   );
 }
 
-export default CharactersDetails;
+export default CharacterDetails;
