@@ -8,6 +8,7 @@ function Search({ change, initialValue }: { change: (event: string) => void; ini
   const search = useDebounce(value, 500);
 
   useEffect(() => {
+    if (search === initialValue) return;
     change(search);
   }, [search]);
   return (
