@@ -42,7 +42,7 @@ npm run test
 
 Este projeto utiliza a [API Marvel](https://developer.marvel.com/), uma API pública fornecida pela Marvel para acessar informações dos personagens.
 
-## Folder Structure
+## Estrutura de pastas
 
 ```
 src/
