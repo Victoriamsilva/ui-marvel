@@ -12,7 +12,7 @@ Acessível clicando [aqui](https://ui-marvel.vercel.app/).
 
 - **Pesquisar por um personagem**: O usuário pode pesquisar por um personagem pelo nome.
 - **Listagem de todos os personagens**: O usuário poderá visualizar todos os personagens de forma paginada e caso perca a conexão com a internet poderá visualizar a última busca.
-- **Detalhe de personagem**: O usuário pode explorar os detalhes de cada personagem, incluindo suas participações em filmes e revistas. Além disso, se perder a conexão com a internet, poderão acessar o último personagem visualizado.
+- **Detalhe de personagem**: O usuário pode explorar os detalhes de cada personagem, incluindo suas participações em filmes e revistas. Além disso, se perder a conexão com a internet, poderá acessar o último personagem visualizado.
 
 ## Instalação
 
