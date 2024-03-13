@@ -2,6 +2,8 @@
 
 Este projeto é uma interface de usuário para acessar informações sobre personagens da Marvel, incluindo suas aparições em filmes e quadrinhos. Ele fornece recursos como pesquisa de personagens por nome, lista paginada de todos os personagens e visualizações detalhadas de personagens individuais.
 
+Acessível clicando [aqui](https://ui-marvel.vercel.app/).
+
 ## Preview do projeto
 ![Listagem de personagens](https://github.com/Victoriamsilva/ui-marvel/assets/96841171/35a8506a-8752-438a-a517-a0db7837e841)
 ![Listagem de personagens](https://github.com/Victoriamsilva/ui-marvel/assets/96841171/71a7bf92-aab2-47ca-94a4-07daf6e87708)
