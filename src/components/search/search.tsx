@@ -3,12 +3,12 @@ import Icon from '../icon/icon';
 import { useDebounce } from '../../hooks/useDebounce';
 import { useEffect, useState } from 'react';
 
-function Search({ change, initialValue }: { change: (event: string) => void; initialValue: string }) {
-  const [value, setValue] = useState(initialValue as string);
+function Search({ change, initialValue }: { change: (event: string) => void; initialValue: any }) {
+  const [value, setValue] = useState(initialValue);
   const search = useDebounce(value, 500);
 
   useEffect(() => {
-    if (search === initialValue) return;
+    if (search === null) return;
     change(search);
   }, [search]);
   return (
