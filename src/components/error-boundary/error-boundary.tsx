@@ -24,7 +24,7 @@ class ErrorBoundary extends Component<Props, State> {
   public render() {
     if (this.state.hasError) {
       console.error('Uncaught error:', this.state.hasError);
-      return <h1 className="text-white text-center py-10">Desculpe... Ocorreu um erro</h1>;
+      return <h2 className="text-center py-10">Desculpe... Ocorreu um erro</h2>;
     }
 
     return this.props.children;

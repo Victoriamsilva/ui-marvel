@@ -26,7 +26,7 @@ function ListCards({
     switch (feedBackMessage) {
       case 'onlyText':
         return (
-          <p data-testid="test-feedback" className="!text-white text-xl text-center">
+          <p data-testid="test-feedback" className="text-center">
             Nenhum resultado encontrado
           </p>
         );

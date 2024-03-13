@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import './typography.scss';
+
+body {
+  background-image: url('../assets/background-pattern.svg');
+  @apply min-h-svh bg-black #{!important};
+  .rt-ContainerInner {
+    @apply flex flex-col items-center;
+  }
+
+  .rt-TabsTrigger::before {
+    @apply bg-yellow-500;
+  }
+
+  .rt-TabsTrigger {
+    @apply p-0 xs:px-2 text-sm xs:text-base text-white cursor-pointer;
+  }
+}

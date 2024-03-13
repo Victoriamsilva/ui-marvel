@@ -1,7 +1,17 @@
 .rt-Card {
-  @apply text-white;
-
   &:hover {
+    @apply shadow-yellow-500 shadow-md;
+    .content {
+      transform: translateY(0%);
+
+      p {
+        opacity: 1;
+      }
+    }
+  }
+
+  // ver com o flo
+  @media screen and (max-width: 768px) {
     @apply shadow-yellow-500 shadow-md;
     .content {
       transform: translateY(0%);
@@ -30,7 +40,6 @@
   }
 
   h2 {
-    @apply text-xl text-yellow-500 font-bold rounded p-1;
     display: -webkit-box;
     max-width: 200px;
     -webkit-line-clamp: 2;
