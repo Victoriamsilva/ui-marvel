@@ -10,7 +10,6 @@
     }
   }
 
-  // ver com o flo
   @media screen and (max-width: 768px) {
     @apply shadow-yellow-500 shadow-md;
     .content {
@@ -29,14 +28,14 @@
   transform: translateY(calc(100% - 6rem));
 
   &::before {
-    @apply absolute inset-0 bg-black opacity-50 z-10;
+    @apply absolute inset-0 bg-black opacity-70 z-10;
     content: '';
     transition: all 0.8s;
   }
 
   h2,
   p {
-    @apply z-20;
+    @apply z-20 text-center;
   }
 
   h2 {
